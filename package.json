@@ -3,7 +3,7 @@
     "private": true,
     "version": "0.0.0",
     "type": "module",
-    "homepage": "https://choi-hyk.github.io/choi-hyk.github.io",
+    "homepage": "https://choi-hyk.github.io",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
