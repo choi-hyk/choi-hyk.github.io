@@ -1,8 +1,15 @@
-import { useState } from "react";
-import "./App.css";
+import styled from "styled-components";
+import { HashRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/home/Home";
 
 function App() {
-    return <>Hello world</>;
+    return (
+        <HashRouter>
+            <Routes>
+                <Route path="/" element={<Home />} />
+            </Routes>
+        </HashRouter>
+    );
 }
 
 export default App;
