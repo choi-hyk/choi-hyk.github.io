@@ -6,6 +6,7 @@ export const DivPathBar = styled.div`
     border: 2px solid var(--border-color);
     border-radius: 0 0 24px 24px;
 
+    width: 100%;
     height: 10%;
     padding: 0.4%;
 
@@ -13,6 +14,10 @@ export const DivPathBar = styled.div`
     align-items: center;
     justify-content: center;
     z-index: 1;
+
+    position: fixed;
+    top: 0;
+    left: 0;
 `;
 
 export const DivTitleBar = styled.div`

@@ -1,13 +1,7 @@
-import Nav from "../../components/nav/Nav";
-import SideBar from "../../components/sidebar/SideBar";
+import { DivCenteredWrapper } from "./Home.styles";
 
 function Home() {
-    return (
-        <>
-            <Nav />
-            <SideBar />
-        </>
-    );
+    return <DivCenteredWrapper>Home</DivCenteredWrapper>;
 }
 
 export default Home;
