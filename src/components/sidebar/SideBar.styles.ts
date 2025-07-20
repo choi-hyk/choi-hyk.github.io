@@ -9,7 +9,19 @@ export const DivSideBar = styled.div`
     width: 5%;
     height: 100%;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     position: fixed;
     left: 0;
     top: 0;
+`;
+
+export const DivIconContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
 `;
