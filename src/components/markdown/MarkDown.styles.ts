@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const DivCenteredWrapper = styled.div`
-    @import url("https://fonts.googleapis.com/css2?family=Fira+Code&display=swap");
-
     margin: 0 auto;
     padding: 3rem;
     line-height: 1.7;

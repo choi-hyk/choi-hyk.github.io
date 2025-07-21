@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { DivCenteredWrapper } from "./MarkDown.styles";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css";
@@ -14,8 +15,10 @@ export default function MarkdownRenderer({ page }: { page: string }) {
     }, []);
 
     return (
-        <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
-            {markdown}
-        </ReactMarkdown>
+        <DivCenteredWrapper>
+            <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+                {markdown}
+            </ReactMarkdown>
+        </DivCenteredWrapper>
     );
 }
