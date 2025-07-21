@@ -1,11 +1,21 @@
-# 안녕하세요 👋
-
-이것은 마크다운 테스트입니다!
-
--   소개
--   경력
--   프로젝트
+# 🏡Hyk’s profile🏡
 
 ```java
-String str = "Example of String";
+System.out.println("Hello everyone!");
 ```
+
+## 😃**profile**😃
+
+**_Name : Choi Hyeok_**
+
+**_Birth : 2001.07.09_**
+
+**_E-mail : blindlchoil@gmail.com, 8167chhk@naver.com_**
+
+---
+
+## **🖥️Blog🖥️**
+
+### 🐈[GitHub](https://github.com/choi-hyk/choi-hyk)
+
+### 🐈[Velog](https://velog.io/@choi-hyk/posts)
