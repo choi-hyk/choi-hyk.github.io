@@ -1,7 +1,13 @@
-import { DivCenteredWrapper } from "./Calender.styles";
+import MyCalendar from "../../components/calender/MyCalender";
+import MarkdownRenderer from "../../components/markdown/MarkDown";
 
 function Calender() {
-    return <DivCenteredWrapper>Calender</DivCenteredWrapper>;
+    return (
+        <>
+            <MarkdownRenderer page="calender" />
+            <MyCalendar />
+        </>
+    );
 }
 
 export default Calender;
