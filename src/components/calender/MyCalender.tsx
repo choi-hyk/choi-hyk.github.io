@@ -1,27 +1,16 @@
 import {
     Calendar,
     Views,
-    dateFnsLocalizer,
     Event as RBCEvent,
     View,
+    momentLocalizer,
 } from "react-big-calendar";
-import { format, parse, startOfWeek, getDay } from "date-fns";
-import { enUS } from "date-fns/locale/en-US";
+import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import CalenderWrapper from "./MyCalender.styles";
 import { useState } from "react";
 
-const locales = {
-    en: enUS,
-};
-
-const localizer = dateFnsLocalizer({
-    format,
-    parse,
-    startOfWeek: () => startOfWeek(new Date(), { weekStartsOn: 0 }),
-    getDay,
-    locales,
-});
+const localizer = momentLocalizer(moment);
 
 const MyCalendar = () => {
     const [view, setView] = useState<View>(Views.MONTH);
@@ -42,7 +31,6 @@ const MyCalendar = () => {
                 onNavigate={(newDate) => setDate(newDate)}
                 popup
                 culture="en"
-                events={[]}
                 messages={{
                     today: "today",
                     previous: "previous",
