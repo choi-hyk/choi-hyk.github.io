@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import { PageProvider } from "./context/PageContext";
 import Layout from "./components/layout/Layout";
@@ -7,7 +8,7 @@ import Calender from "./pages/calender/Calender";
 import Study from "./pages/study/Study";
 import Game from "./pages/game/Game";
 import Setting from "./pages/setting/Setting";
-``;
+
 function App() {
     return (
         <HashRouter>
