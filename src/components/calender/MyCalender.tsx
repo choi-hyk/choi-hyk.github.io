@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
     Calendar,
     Views,
@@ -8,18 +9,38 @@ import {
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import CalenderWrapper from "./MyCalender.styles";
-import { useState } from "react";
+import { fetchEvents } from "../../api";
 
 const localizer = momentLocalizer(moment);
 
+interface Event {
+    id: number;
+    title: string;
+    start: string | Date;
+    end: string | Date;
+}
+
 const MyCalendar = () => {
+    const [events, setEvents] = useState<Event[]>([]);
     const [view, setView] = useState<View>(Views.MONTH);
     const [date, setDate] = useState(new Date());
+
+    useEffect(() => {
+        fetchEvents().then((events) => {
+            const parsed = events.map((e: Event) => ({
+                ...e,
+                start: new Date(e.start),
+                end: new Date(e.end),
+            }));
+            setEvents(parsed);
+        });
+    }, []);
 
     return (
         <CalenderWrapper>
             <Calendar
                 localizer={localizer}
+                events={events}
                 startAccessor="start"
                 endAccessor="end"
                 selectable

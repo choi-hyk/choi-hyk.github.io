@@ -40,8 +40,9 @@ const CalendarWrapper = styled.div`
     }
 
     .rbc-event {
+        width: 90%;
         color: white;
-        background-color: #007bff;
+        background-color: #554747ff;
     }
 
     .rbc-date-cell {
