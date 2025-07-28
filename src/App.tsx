@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import { PageProvider } from "./context/PageContext";
 import Layout from "./components/layout/Layout";
-import Home from "./pages/home/Home";
 import Profile from "./pages/profile/Profile";
 import Calender from "./pages/calender/Calender";
 import Study from "./pages/study/Study";

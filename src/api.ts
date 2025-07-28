@@ -16,7 +16,16 @@ export async function createEvent(event: {
     title: string;
     start: string;
     end: string;
+    description: string;
 }) {
     const res = await axios.post(`${API_BASE_URL}/events`, event);
     return res.data;
+}
+
+export interface Event {
+    id: number;
+    title: string;
+    start: string | Date;
+    end: string | Date;
+    description: string;
 }
