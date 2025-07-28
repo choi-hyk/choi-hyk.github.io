@@ -1,40 +1,42 @@
-import { useEffect, useState } from "react";
-import {
-    Calendar,
-    Views,
-    Event as RBCEvent,
-    View,
-    momentLocalizer,
-} from "react-big-calendar";
+import { useState } from "react";
+import { isSameDay } from "date-fns";
+import { Calendar, Views, View, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import CalenderWrapper from "./MyCalender.styles";
-import { fetchEvents } from "../../api";
+import { Event } from "../../api";
 
 const localizer = momentLocalizer(moment);
 
-interface Event {
-    id: number;
-    title: string;
-    start: string | Date;
-    end: string | Date;
+interface MyCalendarProps {
+    events?: Event[];
+    selectedDate: Date;
+    setSelectedDate: (date: Date) => void;
 }
 
-const MyCalendar = () => {
-    const [events, setEvents] = useState<Event[]>([]);
+const MyCalendar = ({
+    events,
+    selectedDate,
+    setSelectedDate,
+}: MyCalendarProps) => {
     const [view, setView] = useState<View>(Views.MONTH);
     const [date, setDate] = useState(new Date());
 
-    useEffect(() => {
-        fetchEvents().then((events) => {
-            const parsed = events.map((e: Event) => ({
-                ...e,
-                start: new Date(e.start),
-                end: new Date(e.end),
-            }));
-            setEvents(parsed);
-        });
-    }, []);
+    const handleSelectSlot = (slotInfo: any) => {
+        setSelectedDate(slotInfo.start);
+    };
+
+    const dayPropGetter = (day: Date) => {
+        if (isSameDay(day, selectedDate)) {
+            return {
+                style: {
+                    backgroundColor: "#fff5d1",
+                    border: "1px solid #f1c40f",
+                },
+            };
+        }
+        return {};
+    };
 
     return (
         <CalenderWrapper>
@@ -44,12 +46,14 @@ const MyCalendar = () => {
                 startAccessor="start"
                 endAccessor="end"
                 selectable
+                onSelectSlot={handleSelectSlot}
                 view={view}
                 views={[Views.MONTH, Views.WEEK, Views.DAY]}
                 defaultView={Views.MONTH}
                 onView={(v) => setView(v)}
                 date={date}
                 onNavigate={(newDate) => setDate(newDate)}
+                dayPropGetter={dayPropGetter}
                 popup
                 culture="en"
                 messages={{

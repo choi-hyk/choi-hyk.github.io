@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
-export const DivCenteredWrapper = styled.div`
-    height: 100vh;
+export const DivWrapper = styled.div`
+    height: 46vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
 `;
