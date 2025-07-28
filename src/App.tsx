@@ -15,7 +15,10 @@ function App() {
             <PageProvider>
                 <Routes>
                     <Route path="/" element={<Layout />}>
-                        <Route index element={<Home />} />
+                        <Route
+                            index
+                            element={<Navigate to="/profile" replace />}
+                        />
                         <Route path="profile" element={<Profile />} />
                         <Route path="calendar" element={<Calender />} />
                         <Route path="study" element={<Study />} />
