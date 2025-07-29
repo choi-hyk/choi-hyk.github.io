@@ -1,4 +1,4 @@
-import React from "react";
+import { usePageContext } from "../../context/PageContext";
 import { useNavigate } from "react-router-dom";
 import { DivIconBox, ImgIcon, SpanIconName } from "./Icon.styles";
 
@@ -10,9 +10,13 @@ interface IconBoxProps {
 
 const IconBox: React.FC<IconBoxProps> = ({ iconSrc, iconName, alt }) => {
     const navigate = useNavigate();
+    const { currentPage } = usePageContext();
 
     return (
-        <DivIconBox onClick={() => navigate(`/${iconName.toLowerCase()}`)}>
+        <DivIconBox
+            $selected={"/" + iconName === currentPage}
+            onClick={() => navigate(`/${iconName.toLowerCase()}`)}
+        >
             <ImgIcon src={iconSrc} alt={alt ?? iconName} />
             <SpanIconName>{iconName}</SpanIconName>
         </DivIconBox>
