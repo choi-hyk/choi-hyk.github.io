@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { DivWrapper } from "./Calender.styles";
 import { fetchEvents, Event } from "../../api";
 import MyCalendar from "../../components/calender/MyCalender";
-import MarkdownRenderer from "../../components/markdown/MarkDown";
+import { MarkdownRenderer } from "../../components/markdown/MarkDown";
 import EventInfo from "../../components/event/EventInfo";
 
 function Calender() {

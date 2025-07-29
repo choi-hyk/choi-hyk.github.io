@@ -3,8 +3,9 @@ import { DivCenteredWrapper } from "./MarkDown.styles";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css";
+import { Post } from "../../api";
 
-export default function MarkdownRenderer({ page }: { page: string }) {
+function MarkdownRenderer({ page }: { page: string }) {
     const [markdown, setMarkdown] = useState("");
 
     useEffect(() => {
@@ -22,3 +23,15 @@ export default function MarkdownRenderer({ page }: { page: string }) {
         </DivCenteredWrapper>
     );
 }
+
+function MarkDownPostRenderer({ post }: { post: Post }) {
+    return (
+        <DivCenteredWrapper>
+            <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+                {post.description}
+            </ReactMarkdown>
+        </DivCenteredWrapper>
+    );
+}
+
+export { MarkdownRenderer, MarkDownPostRenderer };

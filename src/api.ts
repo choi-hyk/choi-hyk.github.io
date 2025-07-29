@@ -7,6 +7,7 @@ export async function ping() {
     return res.data;
 }
 
+// Calender------------------------------------------------------------------------
 export async function fetchEvents() {
     const res = await axios.get(`${API_BASE_URL}/events`);
     return res.data;
@@ -27,5 +28,20 @@ export interface Event {
     title: string;
     start: string | Date;
     end: string | Date;
+    description: string;
+}
+
+// Velog----------------------------------------------------------------------------
+export async function fetchVelog() {
+    const res = await axios.get(`${API_BASE_URL}/velog`);
+    return (res.data as Post[]).sort((a, b) => a.id - b.id);
+}
+
+export interface Post {
+    id: number;
+    tag?: string;
+    title: string;
+    link: string;
+    pubDate: string;
     description: string;
 }
