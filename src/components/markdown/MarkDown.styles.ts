@@ -11,6 +11,10 @@ export const DivCenteredWrapper = styled.div`
         margin-top: 1.5em;
     }
 
+    h1 {
+        padding-top: 2rem;
+    }
+
     pre code {
         background: none !important;
         background-color: transparent !important;

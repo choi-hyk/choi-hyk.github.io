@@ -4,9 +4,9 @@ import { PageProvider } from "./context/PageContext";
 import Layout from "./components/layout/Layout";
 import Profile from "./pages/profile/Profile";
 import Calender from "./pages/calender/Calender";
+import Velog from "./pages/velog/Velog";
+import GitHub from "./pages/github/GitHub";
 import Study from "./pages/study/Study";
-import Game from "./pages/game/Game";
-import Setting from "./pages/setting/Setting";
 
 function App() {
     useEffect(() => {
@@ -47,9 +47,9 @@ function App() {
                         />
                         <Route path="profile" element={<Profile />} />
                         <Route path="calendar" element={<Calender />} />
-                        <Route path="study" element={<Study />} />
-                        <Route path="game" element={<Game />} />
-                        <Route path="setting" element={<Setting />} />
+                        <Route path="github" element={<GitHub />} />
+                        <Route path="velog" element={<Velog />} />
+                        <Route path="setting" element={<Study />} />
                         <Route path="*" element={<Navigate to="/" replace />} />
                     </Route>
                 </Routes>

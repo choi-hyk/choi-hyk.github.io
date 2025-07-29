@@ -1,10 +1,10 @@
 import { DivSideBar, DivIconContainer } from "./SideBar.styles";
 import IconBox from "../icon/Icon";
 import Calender from "../../assets/calender.png";
-import Game from "../../assets/game.png";
+import GitHub from "../../assets/github.png";
 import Profile from "../../assets/profile.png";
 import Setting from "../../assets/setting.png";
-import Study from "../../assets/study.png";
+import Velog from "../../assets/velog.png";
 
 function SideBar() {
     return (
@@ -12,8 +12,8 @@ function SideBar() {
             <DivIconContainer>
                 <IconBox iconSrc={Profile} iconName="profile" />
                 <IconBox iconSrc={Calender} iconName="calendar" />
-                <IconBox iconSrc={Study} iconName="study" />
-                <IconBox iconSrc={Game} iconName="game" />
+                <IconBox iconSrc={GitHub} iconName="github" />
+                <IconBox iconSrc={Velog} iconName="velog" />
                 <IconBox iconSrc={Setting} iconName="setting" />
             </DivIconContainer>
         </DivSideBar>

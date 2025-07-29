@@ -9,11 +9,10 @@ export const DivIconBox = styled.div`
 `;
 
 export const ImgIcon = styled.img`
-    width: 65%;
+    width: 95%;
 `;
 
 export const SpanIconName = styled.span`
-    font-size: 30%;
     color: var(--secondary-color);
     text-align: center;
 `;
