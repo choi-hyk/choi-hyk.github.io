@@ -1,6 +1,7 @@
 :root {
     --primary-color: #2f2a2a;
     --secondary-color: #c6b6b6;
+    --tertiary-color: #d7d4d0;
 
     --background-color: #695e5e;
     --path_bar_background_color: #201c1c;
@@ -15,8 +16,10 @@
 
     --text-color: #ffffff;
     --secondary-text-color: #0deeaa;
+    --third-text-color: #e4834a;
+    --fourth-text-color: #c63939;
     --tertiary-text-color: #9e65cd;
-    --terminal-text-color: darkgray;
+    --terminal-text-color: rgb(87, 82, 82);
 }
 
 html,

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const DivCenteredWrapper = styled.div`
     margin: 0 auto;
     padding: 3rem;
-    line-height: 1.7;
+    line-height: 1;
 
     h1,
     h2,
@@ -30,6 +30,11 @@ export const DivCenteredWrapper = styled.div`
 
     code {
         padding: 0.2rem 0.4rem;
+        padding: 0.2rem 0.4rem;
+        background-color: rgba(0, 0, 0, 0.56);
+        border-radius: 4px;
+        font-family: "Fira Code";
+        font-size: 0.95em;
     }
 
     table {
@@ -40,5 +45,12 @@ export const DivCenteredWrapper = styled.div`
     td {
         border: 1px solid #ccc;
         padding: 0.5rem;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 1rem auto;
     }
 `;
