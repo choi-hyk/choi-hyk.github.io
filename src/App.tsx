@@ -49,7 +49,7 @@ function App() {
                         <Route path="calendar" element={<Calender />} />
                         <Route path="github" element={<GitHub />} />
                         <Route path="velog" element={<Velog />} />
-                        <Route path="setting" element={<Study />} />
+                        {/* <Route path="study" element={<Study />} /> */}
                         <Route path="*" element={<Navigate to="/" replace />} />
                     </Route>
                 </Routes>
