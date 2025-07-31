@@ -31,6 +31,25 @@ export interface Event {
     description: string;
 }
 
+// GitHub------------------------------------------------------------------------
+export async function fetchGitHub() {
+    const profile = await axios.get(`${API_BASE_URL}/github/profile`);
+    const repos = await axios.get(`${API_BASE_URL}/github/repo`);
+    return { profile: profile.data, repos: repos.data };
+}
+
+export interface Profile {
+    login: string;
+    avatar_url: string;
+    html_url: string;
+    name: string;
+    company: string;
+    location: string;
+    public_repos: number;
+    followers: number;
+    following: number;
+}
+
 // Velog----------------------------------------------------------------------------
 export async function fetchVelog() {
     const res = await axios.get(`${API_BASE_URL}/velog`);

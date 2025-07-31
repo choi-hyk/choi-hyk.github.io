@@ -1,32 +1,25 @@
 import { useEffect, useState } from "react";
 import { DivWrapper } from "./Calender.styles";
-import { fetchEvents, Event } from "../../api";
+import { Event } from "../../api";
 import MyCalendar from "../../components/calender/MyCalender";
 import { MarkdownRenderer } from "../../components/markdown/MarkDown";
 import EventInfo from "../../components/event/EventInfo";
+import { useEvents } from "../../useApi";
 
 function Calender() {
-    const [events, setEvents] = useState<Event[] | undefined>([]);
+    const { data, error, isLoading } = useEvents();
     const [selectedDate, setSelectedDate] = useState<Date>(new Date());
     const [selectedEvents, setSelectedEvents] = useState<Event[] | undefined>(
         []
     );
-
     useEffect(() => {
-        fetchEvents().then((events) => {
-            const parsed = events.map((e: Event) => ({
-                ...e,
-                start: new Date(e.start),
-                end: new Date(e.end),
-            }));
-            setEvents(parsed);
-        });
-    }, []);
-
-    useEffect(() => {
-        if (!events) return;
-
-        const filtered = events.filter((event) => {
+        if (!data) return;
+        const parsed = data.map((e: Event) => ({
+            ...e,
+            start: new Date(e.start),
+            end: new Date(e.end),
+        }));
+        const filtered = parsed.filter((event: Event) => {
             const s = event.start as Date;
             const e = event.end as Date;
             return (
@@ -39,7 +32,11 @@ function Calender() {
             );
         });
         setSelectedEvents(filtered);
-    }, [selectedDate, events]);
+    }, [selectedDate, data]);
+
+    if (error) return null;
+    if (isLoading || !data) return null;
+    const events = data;
 
     return (
         <>
