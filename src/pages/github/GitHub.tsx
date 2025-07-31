@@ -1,21 +1,15 @@
-import { useEffect, useState } from "react";
-import { fetchGitHub } from "../../api";
 import { MarkdownRenderer } from "../../components/markdown/MarkDown";
 import { GitHubProfile } from "../../components/github/GitHub";
-import { Profile } from "../../api";
 import { DivCenteredWrapper } from "./GitHub.styles";
+import { useGitHub } from "../../useApi";
 
 function GitHub() {
-    const [profile, setProfile] = useState<Profile | null>(null);
-    const [repos, setRepos] = useState([]);
+    const { data, error, isLoading } = useGitHub();
 
-    useEffect(() => {
-        fetchGitHub().then((data) => {
-            const { profile, repos } = data;
-            setProfile(profile);
-            setRepos(repos);
-        });
-    }, []);
+    if (error) return null;
+    if (isLoading) return null;
+    if (!data) return null;
+    const { profile } = data;
 
     return (
         <>
