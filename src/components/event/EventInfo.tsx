@@ -6,7 +6,7 @@ import {
     DivEventTitle,
 } from "./EventInfo.styles";
 import moment from "moment";
-import { Event } from "../../api";
+import { Event } from "../../api/api";
 
 function EventInfo({ events }: { events: Event[] | undefined }) {
     if (!events || events.length === 0) {

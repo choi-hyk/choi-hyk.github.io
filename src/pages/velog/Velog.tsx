@@ -9,14 +9,13 @@ import {
     DivTagContainer,
     DivVelogWrapper,
 } from "./Velog.styles";
-import { fetchVelog, Post } from "../../api";
+import { Post } from "../../api/api";
 import {
     MarkDownPostRenderer,
     MarkdownRenderer,
 } from "../../components/markdown/MarkDown";
 import moment from "moment";
-import { useVelog } from "../../useApi";
-import { se } from "date-fns/locale";
+import { useVelog } from "../../api/useApi";
 
 function Velog() {
     const { data, error, isLoading } = useVelog();

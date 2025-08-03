@@ -3,14 +3,13 @@ import {
     DivComapny,
     DivFollowers,
     DivFollowing,
-    DivHtml,
     DivLocation,
     DivLogin,
     DivName,
     DivProfileContainer,
     DivProfileInnerContainer,
-} from "./GItHub.styles";
-import { Profile } from "../../api";
+} from "./GitHub.styles";
+import { Profile } from "../../api/api";
 
 interface GitHubProfileProps {
     profile: Profile | null;

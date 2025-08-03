@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { DivWrapper } from "./Calender.styles";
-import { Event } from "../../api";
+import { Event } from "../../api/api";
 import MyCalendar from "../../components/calender/MyCalender";
 import { MarkdownRenderer } from "../../components/markdown/MarkDown";
 import EventInfo from "../../components/event/EventInfo";
-import { useEvents } from "../../useApi";
+import { useEvents } from "../../api/useApi";
 
 function Calender() {
     const { data, error, isLoading } = useEvents();
