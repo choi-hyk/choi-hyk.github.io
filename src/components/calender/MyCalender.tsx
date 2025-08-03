@@ -4,7 +4,7 @@ import { Calendar, Views, View, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import CalenderWrapper from "./MyCalender.styles";
-import { Event } from "../../api";
+import { Event } from "../../api/api";
 
 const localizer = momentLocalizer(moment);
 

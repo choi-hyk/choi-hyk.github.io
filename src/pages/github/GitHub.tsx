@@ -1,7 +1,7 @@
 import { MarkdownRenderer } from "../../components/markdown/MarkDown";
 import { GitHubProfile } from "../../components/github/GitHub";
 import { DivCenteredWrapper } from "./GitHub.styles";
-import { useGitHub } from "../../useApi";
+import { useGitHub } from "../../api/useApi";
 
 function GitHub() {
     const { data, error, isLoading } = useGitHub();
