@@ -12,6 +12,8 @@ function Calender() {
     const [selectedEvents, setSelectedEvents] = useState<Event[] | undefined>(
         []
     );
+    const [markdownLoaded, setMarkdownLoaded] = useState(false);
+
     useEffect(() => {
         if (!data) return;
         const parsed = data.map((e: Event) => ({
@@ -35,20 +37,24 @@ function Calender() {
     }, [selectedDate, data]);
 
     if (error) return null;
-    if (isLoading || !data) return null;
-    const events = data;
 
     return (
         <>
-            <MarkdownRenderer page="calender" />
-            <DivWrapper>
-                <MyCalendar
-                    events={events}
-                    selectedDate={selectedDate}
-                    setSelectedDate={setSelectedDate}
-                />
-                <EventInfo events={selectedEvents} />
-            </DivWrapper>
+            <MarkdownRenderer
+                page="calender"
+                onLoad={() => setMarkdownLoaded(true)}
+            />
+
+            {!isLoading && data && markdownLoaded && (
+                <DivWrapper>
+                    <MyCalendar
+                        events={data}
+                        selectedDate={selectedDate}
+                        setSelectedDate={setSelectedDate}
+                    />
+                    <EventInfo events={selectedEvents} />
+                </DivWrapper>
+            )}
         </>
     );
 }

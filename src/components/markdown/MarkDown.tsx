@@ -7,12 +7,19 @@ import { Post } from "../../api/api";
 
 const markdownCache = new Map<string, string>();
 
-function MarkdownRenderer({ page }: { page: string }) {
+function MarkdownRenderer({
+    page,
+    onLoad,
+}: {
+    page: string;
+    onLoad?: () => void;
+}) {
     const [markdown, setMarkdown] = useState("");
 
     useEffect(() => {
         if (markdownCache.has(page)) {
             setMarkdown(markdownCache.get(page)!);
+            if (onLoad) onLoad();
             return;
         }
         fetch(`/markdown/${page}.md`)
@@ -20,6 +27,7 @@ function MarkdownRenderer({ page }: { page: string }) {
             .then((text) => {
                 markdownCache.set(page, text);
                 setMarkdown(text);
+                if (onLoad) onLoad();
             })
             .catch((err) => console.error("파일 읽기 실패:", err));
     }, [page]);
