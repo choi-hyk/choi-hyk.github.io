@@ -55,6 +55,5 @@ export const DivCenteredWrapper = styled.div`
         max-width: 100%;
         height: auto;
         display: block;
-        margin: 1rem auto;
     }
 `;

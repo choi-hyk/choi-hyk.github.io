@@ -30,13 +30,16 @@ export const DivTitleBar = styled.div`
     border-radius: 24px;
 
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    gap: 10px;
+    padding: 0 20px;
 `;
 
 export const PageIcon = styled.img`
-    width: 7%;
-    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
 `;
 
 export const SpanText1 = styled.span`
