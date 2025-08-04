@@ -46,7 +46,7 @@ function App() {
                             element={<Navigate to="/profile" replace />}
                         />
                         <Route path="profile" element={<Profile />} />
-                        <Route path="calendar" element={<Calender />} />
+                        <Route path="calender" element={<Calender />} />
                         <Route path="github" element={<GitHub />} />
                         <Route path="velog" element={<Velog />} />
                         {/* <Route path="study" element={<Study />} /> */}

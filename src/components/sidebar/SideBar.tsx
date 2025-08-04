@@ -11,7 +11,7 @@ function SideBar() {
         <DivSideBar>
             <DivIconContainer>
                 <IconBox iconSrc={Profile} iconName="profile" />
-                <IconBox iconSrc={Calender} iconName="calendar" />
+                <IconBox iconSrc={Calender} iconName="calender" />
                 <IconBox iconSrc={GitHub} iconName="github" />
                 <IconBox iconSrc={Velog} iconName="velog" />
                 {/* <IconBox iconSrc={Setting} iconName="setting" /> */}

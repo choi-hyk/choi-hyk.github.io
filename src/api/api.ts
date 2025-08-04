@@ -34,8 +34,18 @@ export interface Event {
 // GitHub------------------------------------------------------------------------
 export async function fetchGitHub() {
     const profile = await axios.get(`${API_BASE_URL}/github/profile`);
-    const repos = await axios.get(`${API_BASE_URL}/github/repo`);
-    return { profile: profile.data, repos: repos.data };
+    const repoData = await axios.get(`${API_BASE_URL}/github/repo`);
+    const data = repoData.data;
+    const repos = data.repositories || [];
+    const issues = data.issues || [];
+    const pullRequests = data.pullRequests || [];
+
+    return {
+        profile: profile.data,
+        repos: repos,
+        issues: issues,
+        pullRequests: pullRequests,
+    };
 }
 
 export interface Profile {
@@ -48,6 +58,30 @@ export interface Profile {
     public_repos: number;
     followers: number;
     following: number;
+}
+
+export interface Repository {
+    id: number;
+    name: string;
+    html_url: string;
+    open_issues_count: number;
+}
+
+export interface Issue {
+    id: number;
+    number: number;
+    title: string;
+    html_url: string;
+    repoName: string;
+}
+
+export interface PullRequest {
+    id: number;
+    number: number;
+    title: string;
+    html_url: string;
+    repoName: string;
+    state: string;
 }
 
 // Velog----------------------------------------------------------------------------

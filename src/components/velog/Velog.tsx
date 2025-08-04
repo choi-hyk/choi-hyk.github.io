@@ -9,7 +9,7 @@ import {
     DivPostWrapper,
     DivTagContainer,
     DivVelogWrapper,
-} from "./velog.styles";
+} from "./Velog.styles";
 import { MarkDownPostRenderer } from "../markdown/MarkDown";
 
 interface VelogProps {

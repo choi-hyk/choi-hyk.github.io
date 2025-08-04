@@ -34,6 +34,11 @@ export const DivTitleBar = styled.div`
     align-items: center;
 `;
 
+export const PageIcon = styled.img`
+    width: 7%;
+    margin-right: 10px;
+`;
+
 export const SpanText1 = styled.span`
     color: white;
     font-size: larger;
