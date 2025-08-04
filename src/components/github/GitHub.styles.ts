@@ -9,6 +9,7 @@ const DivProfileContainer = styled.div`
     background-color: var(--secondary-border-color);
     width: 40%;
     gap: 40px;
+    height: 300px;
 `;
 
 const DivProfileInnerContainer = styled.div`
@@ -60,6 +61,75 @@ const DivFollowers = styled.div`
 `;
 
 const DivFollowing = styled.div``;
+
+export const DivRepositoriesContainer = styled.div`
+    display: flex;
+    gap: 20px;
+    height: fit-content;
+`;
+
+export const DivRepoList = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 300px;
+    height: 400px;
+    overflow-y: auto;
+    border: 2px solid var(--terminal-text-color);
+    border-radius: 6px;
+    background-color: var(--border-color);
+    padding: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+`;
+
+export const DivRepoItem = styled.div`
+    padding: 10px;
+    border-bottom: 1px solid var(--secondary-border-color);
+    cursor: pointer;
+    &:last-child {
+        border-bottom: none;
+    }
+    &:hover {
+        background-color: var(--border-color);
+    }
+`;
+
+export const DivRepoName = styled.div`
+    font-weight: bold;
+    color: var(--primary-color);
+`;
+
+export const DivRepoStats = styled.div`
+    font-size: 0.9rem;
+    color: var(--tertiary-text-color);
+`;
+
+export const DivRepoDetails = styled.div`
+    flex-shrink: 0;
+    width: 650px;
+    height: 400px;
+    overflow-y: auto;
+    background-color: var(--secondary-border-color);
+    border: 2px solid var(--terminal-text-color);
+    border-radius: 6px;
+    padding: 20px;
+`;
+
+export const DivSectionTitle = styled.h3`
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: var(--text-color);
+`;
+
+export const DivListItem = styled.div`
+    margin-bottom: 8px;
+    font-size: 1rem;
+
+    a {
+        color: var(--primary-color);
+        text-decoration: underline;
+    }
+`;
 
 export {
     DivProfileContainer,

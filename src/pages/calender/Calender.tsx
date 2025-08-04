@@ -5,6 +5,7 @@ import MyCalendar from "../../components/calender/MyCalender";
 import { MarkdownRenderer } from "../../components/markdown/MarkDown";
 import EventInfo from "../../components/event/EventInfo";
 import { useEvents } from "../../api/useApi";
+import LoadingSpinner from "../../components/loading/LoadingSpinner";
 
 function Calender() {
     const { data, error, isLoading } = useEvents();
@@ -35,6 +36,11 @@ function Calender() {
         });
         setSelectedEvents(filtered);
     }, [selectedDate, data]);
+
+    // 로딩 중일 때 스피너 표시
+    if (isLoading) {
+        return <LoadingSpinner page="calender" />;
+    }
 
     if (error) return null;
 

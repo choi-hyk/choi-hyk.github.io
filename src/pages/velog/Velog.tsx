@@ -3,6 +3,7 @@ import { VelogTagWrapper, VelogWrapper } from "../../components/velog/velog";
 import { Post } from "../../api/api";
 import { MarkdownRenderer } from "../../components/markdown/MarkDown";
 import { useVelog } from "../../api/useApi";
+import LoadingSpinner from "../../components/loading/LoadingSpinner";
 
 function Velog() {
     const { data, error, isLoading } = useVelog();
@@ -15,6 +16,11 @@ function Velog() {
             setSelectedPost(data[0]);
         }
     }, [data, selectedPost]);
+
+    // 로딩 중일 때 스피너 표시
+    if (isLoading) {
+        return <LoadingSpinner page="velog" />;
+    }
 
     if (error) return null;
 
