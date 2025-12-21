@@ -15,8 +15,16 @@ export const PageProvider: React.FC<{ children: React.ReactNode }> = ({
     const [currentPage, setCurrentPage] = useState("/");
 
     useEffect(() => {
-        setCurrentPage(location.pathname);
-    }, [location.pathname]);
+        const rawPath =
+            location.pathname === "/" && location.hash.startsWith("#/")
+                ? location.hash.replace("#", "")
+                : location.pathname;
+        if (rawPath.startsWith("/velog/")) {
+            setCurrentPage("/velog");
+            return;
+        }
+        setCurrentPage(rawPath || "/");
+    }, [location.pathname, location.hash]);
 
     return (
         <PageContext.Provider value={{ currentPage, setCurrentPage }}>

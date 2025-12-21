@@ -1,8 +1,6 @@
-import moment from "moment";
 import { Post } from "../../api/api";
 import {
     ButtonTag,
-    DivMarkdownWrapper,
     DivPostInit,
     DivPostTag,
     DivPostTitle,
@@ -10,80 +8,33 @@ import {
     DivTagContainer,
     DivVelogWrapper,
 } from "./Velog.styles";
-import { MarkDownPostRenderer } from "../markdown/MarkDown";
 
-interface VelogProps {
-    visiblePosts: Post[];
-    selectedPost: Post | null;
-    setSelectedPost: (post: Post | null) => void;
+interface VelogListProps {
+    posts: Post[];
+    onSelect: (post: Post) => void;
 }
 
-function VelogWrapper({
-    visiblePosts,
-    selectedPost,
-    setSelectedPost,
-}: VelogProps) {
+function VelogWrapper({ posts, onSelect }: VelogListProps) {
     return (
         <DivVelogWrapper>
             <DivPostWrapper>
-                {visiblePosts.map((post) => (
-                    <DivPostInit
-                        key={post.id}
-                        onClick={() => setSelectedPost(post)}
-                    >
-                        <DivPostTag>{post.tag}</DivPostTag>
-                        <DivPostTitle $active={selectedPost === post}>
-                            {post.title}
-                        </DivPostTitle>
-                    </DivPostInit>
-                ))}
-            </DivPostWrapper>
-            <DivMarkdownWrapper>
-                <h5
-                    style={{
-                        color: "var(--third-text-color)",
-                        paddingLeft: "40px",
-                    }}
-                >
-                    {moment(selectedPost?.pubDate).format("YYYY-MM-DD HH:mm")}
-                </h5>
-                <h4
-                    style={{
-                        color: "var(--third-text-color)",
-                        paddingLeft: "40px",
-                    }}
-                >
-                    {selectedPost?.link && (
-                        <a
-                            href={selectedPost.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                                color: "var(--fourth-text-color)",
-                                textDecoration: "underline",
-                            }}
+                {posts.map((post) => {
+                    const primaryTag =
+                        post.tag || post.tags?.[0] || "Extra";
+
+                    return (
+                        <DivPostInit
+                            key={post.id}
+                            onClick={() => onSelect(post)}
                         >
-                            Velog에서 보기
-                        </a>
-                    )}
-                </h4>
-                <h1
-                    style={{
-                        color: "var(--secondary-text-color)",
-                        paddingLeft: "40px",
-                    }}
-                >
-                    <span
-                        style={{
-                            color: "var(--tertiary-text-color)",
-                        }}
-                    >
-                        [{selectedPost?.tag}]
-                    </span>
-                    <span> {selectedPost?.title}</span>
-                </h1>
-                {selectedPost && <MarkDownPostRenderer post={selectedPost} />}
-            </DivMarkdownWrapper>
+                            <DivPostTag>{primaryTag}</DivPostTag>
+                            <DivPostTitle $active={false}>
+                                {post.title}
+                            </DivPostTitle>
+                        </DivPostInit>
+                    );
+                })}
+            </DivPostWrapper>
         </DivVelogWrapper>
     );
 }
@@ -105,7 +56,7 @@ function VelogTagWrapper({
                 onClick={() => setSelectedTag(null)}
                 $active={selectedTag === null}
             >
-                전체
+                All
             </ButtonTag>
             {tags.map((tag) => (
                 <ButtonTag

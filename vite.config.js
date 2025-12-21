@@ -6,7 +6,14 @@ export default defineConfig({
     plugins: [react()],
     build: {
         rollupOptions: {
-            treeshake: false,
+            treeshake: true,
+        },
+        outDir: "dist",
+        assetsDir: "assets",
+    },
+    resolve: {
+        alias: {
+            "@": "/src",
         },
     },
 });

@@ -2,58 +2,41 @@ import styled from "styled-components";
 
 export const DivCenteredWrapper = styled.div`
     margin: 0 auto;
-    padding: 3rem;
-    line-height: 1;
+    padding: 2rem 3rem;
+    max-width: 60rem;
 
-    h1,
-    h2,
-    h3 {
-        margin-top: 1.5em;
+    .markdown-body {
+        background: transparent;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        line-height: 1.7;
     }
 
-    h1 {
-        padding-top: 2rem;
+    .markdown-body > :first-child {
+        margin-top: 0 !important;
     }
 
-    pre code {
-        background: none !important;
-        background-color: transparent !important;
-
-        font-family: "Fira Code";
+    .markdown-body p:empty {
+        display: none;
     }
 
-    pre {
-        background: #3a3737ff;
-
-        border-radius: 3px;
-        border: 2px solid var(--secondary-border-color);
-
-        padding: 1rem;
-        overflow-x: auto;
+    .markdown-body p > br:only-child {
+        display: none;
     }
 
-    code {
-        padding: 0.2rem 0.4rem;
-        padding: 0.2rem 0.4rem;
-        background-color: rgba(0, 0, 0, 0.56);
-        border-radius: 4px;
-        font-family: "Fira Code";
-        font-size: 0.95em;
+    .markdown-body .katex-display {
+        margin: 0.6em 0;
     }
 
-    table {
-        border-collapse: collapse;
+    .markdown-body p {
+        margin: 0.4em 0 !important;
     }
 
-    th,
-    td {
-        border: 1px solid #ccc;
-        padding: 0.5rem;
+    .markdown-body p + table {
+        margin-top: 0.2em !important;
     }
 
-    img {
-        max-width: 100%;
-        height: auto;
-        display: block;
+    .markdown-body table {
+        margin-top: 0.2em !important;
     }
 `;

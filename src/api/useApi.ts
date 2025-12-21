@@ -1,35 +1,48 @@
-import useSWR from "swr";
-import useSWRMutation from "swr/mutation";
-import { fetchEvents, fetchGitHub, fetchVelog, createEvent, ping } from "./api";
+import { useState, useEffect } from "react";
+import { fetchGitHub, fetchVelog } from "./api";
+import type { Profile, Repository, Issue, PullRequest } from "./api";
 
-// ping
-export function usePing() {
-    return useSWR("ping", ping, { revalidateOnFocus: false });
-}
-
-// Calendar
-export function useEvents() {
-    return useSWR("events", fetchEvents, { revalidateOnFocus: false });
-}
-
-export function useCreateEvent() {
-    return useSWRMutation(
-        "events",
-        async (key, { arg }: { arg: Parameters<typeof createEvent>[0] }) => {
-            return await createEvent(arg);
-        }
-    );
+interface GitHubData {
+    profile: Profile | null;
+    repos: Repository[];
+    issues: Issue[];
+    pullRequests: PullRequest[];
 }
 
 // GitHub
 export function useGitHub() {
-    return useSWR("github-data", fetchGitHub, {
-        revalidateOnFocus: false,
-        dedupingInterval: 1000 * 60 * 5,
-    });
+    const [data, setData] = useState<GitHubData | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        fetchGitHub()
+            .then((result) => {
+                setData(result);
+                setIsLoading(false);
+            })
+            .catch(() => {
+                setIsLoading(false);
+            });
+    }, []);
+
+    return { data, error: null, isLoading };
 }
 
 // Velog
 export function useVelog() {
-    return useSWR("velog", fetchVelog, { revalidateOnFocus: false });
+    const [data, setData] = useState<import("./api").Post[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        fetchVelog()
+            .then((result) => {
+                setData(result);
+                setIsLoading(false);
+            })
+            .catch(() => {
+                setIsLoading(false);
+            });
+    }, []);
+
+    return { data, error: null, isLoading };
 }

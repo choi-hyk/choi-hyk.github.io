@@ -4,6 +4,12 @@ import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css";
 import { Post } from "../../api/api";
+import remarkGfm from "remark-gfm";
+import "github-markdown-css/github-markdown.css";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import rehypeRaw from "rehype-raw";
+import "katex/dist/katex.min.css";
 
 const markdownCache = new Map<string, string>();
 
@@ -29,24 +35,40 @@ function MarkdownRenderer({
                 setMarkdown(text);
                 if (onLoad) onLoad();
             })
-            .catch((err) => console.error("파일 읽기 실패:", err));
-    }, [page]);
+            .catch((err) => console.error("Fallback to fetch failed", err));
+    }, [page, onLoad]);
 
     return (
         <DivCenteredWrapper>
-            <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
-                {markdown}
-            </ReactMarkdown>
+            <div className="markdown-body">
+                <ReactMarkdown
+                    remarkPlugins={[remarkGfm, remarkMath]}
+                    rehypePlugins={[rehypeRaw, rehypeHighlight, rehypeKatex]}
+                >
+                    {markdown}
+                </ReactMarkdown>
+            </div>
         </DivCenteredWrapper>
     );
 }
 
-function MarkDownPostRenderer({ post }: { post: Post }) {
+function MarkDownPostRenderer({
+    post,
+    markdown,
+}: {
+    post: Post;
+    markdown?: string;
+}) {
     return (
         <DivCenteredWrapper>
-            <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
-                {post.description}
-            </ReactMarkdown>
+            <div className="markdown-body">
+                <ReactMarkdown
+                    remarkPlugins={[remarkGfm, remarkMath]}
+                    rehypePlugins={[rehypeRaw, rehypeHighlight, rehypeKatex]}
+                >
+                    {markdown ?? post.description}
+                </ReactMarkdown>
+            </div>
         </DivCenteredWrapper>
     );
 }
