@@ -21,12 +21,10 @@ export const DivIconBox = styled.div<IconBoxProps>`
         if ($tone) {
             if ($selected) {
                 return `
-        background: rgba(${$tone}, 0.28);
-        border: 1px solid rgba(${$tone}, 0.6);
+        background: rgb(${$tone});
+        border: 1px solid rgb(${$tone});
+        box-shadow: var(--shadow-md);
         &:hover {
-            background: rgb(${$tone});
-            border-color: rgb(${$tone});
-            box-shadow: var(--shadow-md);
             transform: translateY(-0.125rem);
         }
     `;
@@ -44,9 +42,12 @@ export const DivIconBox = styled.div<IconBoxProps>`
         }
         if ($selected) {
             return `
-        background: linear-gradient(135deg, var(--accent-color) 0%, var(--tertiary-text-color) 100%);
+        background: var(--glass-bg);
         border: 1px solid var(--glass-border);
-        box-shadow: var(--shadow-glow);
+        box-shadow: var(--shadow-md);
+        &:hover {
+            transform: translateY(-0.125rem);
+        }
     `;
         }
         return `

@@ -7,7 +7,7 @@ export const DivPathBar = styled.div`
     border-radius: 0 0 24px 24px;
 
     width: 100%;
-    height: 12%;
+    height: 100px;
     padding: 0.6% 2%;
 
     display: flex;

@@ -174,6 +174,7 @@ function extractVelogMeta(markdown: string) {
     cleaned = cleaned.replace(/^released at.*\n\n?/gim, "");
     cleaned = cleaned.replace(/^updated at.*\n\n?/gim, "");
     cleaned = cleaned.replace(/\|.*velog\.io\/tags.*\n\|[-|:\s]+\n?/im, "");
+    cleaned = cleaned.replace(/\*\*`(.+?)`\*\*/g, "`$1`");
 
     return {
         cleanedMarkdown: cleaned.trim(),

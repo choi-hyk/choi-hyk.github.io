@@ -1,56 +1,31 @@
 import { useEffect, useState } from "react";
 import { DivCenteredWrapper } from "./MarkDown.styles";
-import ReactMarkdown from "react-markdown";
-import rehypeHighlight from "rehype-highlight";
-import "highlight.js/styles/github-dark.css";
 import { Post } from "../../api/api";
-import remarkGfm from "remark-gfm";
-import "github-markdown-css/github-markdown.css";
-import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
-import rehypeRaw from "rehype-raw";
+
+import { marked } from "marked";
+import { markedHighlight } from "marked-highlight";
+import markedKatex from "marked-katex-extension";
+import hljs from "highlight.js";
+import DOMPurify from "dompurify";
+
+import "highlight.js/styles/github-dark.css";
 import "katex/dist/katex.min.css";
 
-const markdownCache = new Map<string, string>();
+marked.use(
+    markedHighlight({
+        langPrefix: "hljs language-",
+        highlight(code, lang) {
+            const language = hljs.getLanguage(lang) ? lang : "plaintext";
+            return hljs.highlight(code, { language }).value;
+        },
+    })
+);
 
-function MarkdownRenderer({
-    page,
-    onLoad,
-}: {
-    page: string;
-    onLoad?: () => void;
-}) {
-    const [markdown, setMarkdown] = useState("");
-
-    useEffect(() => {
-        if (markdownCache.has(page)) {
-            setMarkdown(markdownCache.get(page)!);
-            if (onLoad) onLoad();
-            return;
-        }
-        fetch(`/markdown/${page}.md`)
-            .then((res) => res.text())
-            .then((text) => {
-                markdownCache.set(page, text);
-                setMarkdown(text);
-                if (onLoad) onLoad();
-            })
-            .catch((err) => console.error("Fallback to fetch failed", err));
-    }, [page, onLoad]);
-
-    return (
-        <DivCenteredWrapper>
-            <div className="markdown-body">
-                <ReactMarkdown
-                    remarkPlugins={[remarkGfm, remarkMath]}
-                    rehypePlugins={[rehypeRaw, rehypeHighlight, rehypeKatex]}
-                >
-                    {markdown}
-                </ReactMarkdown>
-            </div>
-        </DivCenteredWrapper>
-    );
-}
+marked.use(markedKatex({
+    throwOnError: false,
+    output: "html",
+    nonStandard: true,
+}));
 
 function MarkDownPostRenderer({
     post,
@@ -59,18 +34,59 @@ function MarkDownPostRenderer({
     post: Post;
     markdown?: string;
 }) {
+    const [html, setHtml] = useState<string>("");
+
+    useEffect(() => {
+        const rawMarkdown = markdown ?? post.description ?? "";
+
+        let processed = rawMarkdown;
+
+        processed = processed.replace(/\*\*\s*`(.+?)`\s*\*\*/g, "**$1**");
+
+        processed = processed.replace(
+            /\*\*([^*]*?[\(「\[][^*]*?[\)」\]][^*]*?)\*\*/g, 
+            "<strong>$1</strong>"
+        );
+
+        processed = processed.replace(/`(\$[^`]+?\$)`/g, "$1");
+
+        processed = processed.replace(/(\$[^$]+?\$)/g, (match) => {
+            return match.replace(/_/g, "\\_");
+        });
+
+        const parseMarkdown = async () => {
+            const parsed = await marked.parse(processed, {
+                breaks: true,
+                gfm: true,
+            });
+
+            const sanitized = DOMPurify.sanitize(parsed, {
+                ADD_TAGS: [
+                    "iframe", "span", "math", "style",
+                    "annotation", "semantics", "mtext", "mn", "mo", "mi", "mspace",
+                    "mover", "munder", "munderover", "msup", "msub", "msubsup", "mfrac",
+                    "mroot", "msqrt", "mtable", "mtr", "mtd", "mlabeledtr", "mrow",
+                ],
+                ADD_ATTR: [
+                    "allow", "allowfullscreen", "frameborder", "scrolling",
+                    "class", "style", "xmlns", "display", "role", "aria-hidden"
+                ],
+            });
+
+            setHtml(sanitized);
+        };
+
+        parseMarkdown();
+    }, [markdown, post.description]);
+
     return (
         <DivCenteredWrapper>
-            <div className="markdown-body">
-                <ReactMarkdown
-                    remarkPlugins={[remarkGfm, remarkMath]}
-                    rehypePlugins={[rehypeRaw, rehypeHighlight, rehypeKatex]}
-                >
-                    {markdown ?? post.description}
-                </ReactMarkdown>
-            </div>
+            <div
+                className="markdown-body"
+                dangerouslySetInnerHTML={{ __html: html }}
+            />
         </DivCenteredWrapper>
     );
 }
 
-export { MarkdownRenderer, MarkDownPostRenderer };
+export { MarkDownPostRenderer };

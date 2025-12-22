@@ -265,28 +265,39 @@ export const MetaCard = styled.div`
 export const TagChip = styled.a`
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.55rem 0.85rem;
-    border-radius: 15px;
-    border: 1px solid rgba(60, 214, 180, 0.35);
-    background: rgba(60, 214, 180, 0.08);
-    color: rgb(60, 214, 180);
-    font-size: 0.8rem;
-    font-weight: 600;
-    width: 7.5rem;
     justify-content: center;
+    gap: 0.5rem;
+    
+    padding: 0.5rem 1rem; 
+    min-width: 4.5rem; 
+    
+    border-radius: 9999px;
+    border: 1px solid rgba(60, 214, 180, 0.3); 
+    background: rgba(60, 214, 180, 0.08);
+    backdrop-filter: blur(8px); 
+    
+    color: rgb(60, 214, 180);
+    font-size: 0.85rem;
+    font-weight: 600;
     text-decoration: none;
+    letter-spacing: 0.02em; 
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition: all 0.3s ease;
+    
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); 
 
     &:hover {
-        background: rgb(60, 214, 180);
-        border-color: rgb(60, 214, 180);
-        color: var(--primary-color);
-        transform: translateY(-0.125rem);
-        box-shadow: var(--shadow-md);
+        background: rgba(60, 214, 180, 0.15); 
+        border-color: rgba(60, 214, 180, 0.8); 
+        color: rgb(60, 214, 180); 
+        
+        transform: translateY(-2px) scale(1.02); 
+        
+        box-shadow: 0 4px 15px rgba(60, 214, 180, 0.25); 
+    }
+
+    &:active {
+        transform: translateY(0) scale(0.98);
     }
 `;
 
