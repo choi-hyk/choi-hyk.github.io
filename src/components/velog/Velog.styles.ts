@@ -235,11 +235,47 @@ export const DivMarkdownWrapper = styled.div`
 `;
 
 export const DivPostHeader = styled.div`
+    position: relative;
     padding: 1.25rem 2.5rem 1.5rem 2.5rem; /* 20px 40px 24px 40px */
     border-bottom: 1px solid var(--glass-border);
     margin-bottom: 1.5rem; /* 24px */
     border-radius: 0.75rem; /* 12px */
     background: rgba(60, 214, 180, 0.08);
+`;
+
+export const BackButton = styled.button`
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.9rem;
+    border-radius: 0.6rem;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    &:hover {
+        background: rgba(60, 214, 180, 0.15);
+        border-color: rgba(60, 214, 180, 0.65);
+        color: var(--accent-color);
+        transform: translateY(-0.125rem);
+        box-shadow: var(--shadow-md);
+    }
+
+    &:focus-visible {
+        outline: 2px solid rgba(60, 214, 180, 0.7);
+        outline-offset: 2px;
+    }
 `;
 
 export const MetaRow = styled.div`

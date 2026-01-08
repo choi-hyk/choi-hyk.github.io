@@ -8,6 +8,7 @@ import {
     DivMarkdownWrapper,
     DivPostHeader,
     DivVelogWrapper,
+    BackButton,
     MetaRow,
     TagChip,
     StatusCard,
@@ -106,6 +107,9 @@ function Velog() {
                 <DivVelogWrapper>
                     <DivMarkdownWrapper>
                         <DivPostHeader>
+                            <BackButton type="button" onClick={() => navigate(-1)}>
+                                Back to List
+                            </BackButton>
                             <MetaRow>
                                 {releaseLabel}
                             </MetaRow>
