@@ -50,6 +50,62 @@ export const DivTagContainer = styled.div`
     }
 `;
 
+export const DivSearchContainer = styled.div`
+    display: flex;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 50rem; /* 800px */
+    margin: 0 auto 0.5rem;
+    align-items: center;
+`;
+
+export const SearchInput = styled.input`
+    flex: 1;
+    padding: 0.7rem 1rem;
+    border-radius: 0.75rem; /* 12px */
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    color: var(--text-color);
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    &::placeholder {
+        color: var(--text-secondary);
+    }
+
+    &:focus {
+        border-color: rgba(60, 214, 180, 0.65);
+        box-shadow: var(--shadow-md);
+    }
+`;
+
+export const SearchClearButton = styled.button`
+    padding: 0.6rem 1rem;
+    border-radius: 0.6rem;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    &:hover {
+        background: rgba(60, 214, 180, 0.15);
+        border-color: rgba(60, 214, 180, 0.65);
+        color: var(--accent-color);
+        transform: translateY(-0.125rem);
+        box-shadow: var(--shadow-md);
+    }
+`;
+
 interface ButtonTagProps {
     $active: boolean;
 }

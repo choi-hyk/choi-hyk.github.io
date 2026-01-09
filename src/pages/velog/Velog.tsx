@@ -1,5 +1,9 @@
 import { useMemo, useState } from "react";
-import { VelogTagWrapper, VelogWrapper } from "../../components/velog/Velog";
+import {
+    VelogSearchBar,
+    VelogTagWrapper,
+    VelogWrapper,
+} from "../../components/velog/Velog";
 import type { Post } from "../../api/api";
 import { useVelog } from "../../api/useApi";
 import { useNavigate, useParams } from "react-router-dom";
@@ -20,6 +24,7 @@ import styled from "styled-components";
 function Velog() {
     const { data, error, isLoading } = useVelog();
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
+    const [searchQuery, setSearchQuery] = useState("");
     const navigate = useNavigate();
     const { postId } = useParams();
 
@@ -58,8 +63,17 @@ function Velog() {
         }, {} as Record<string, Post[]>);
     }, [posts]);
 
-    const visiblePosts =
-        selectedTag && grouped[selectedTag] ? grouped[selectedTag] : posts;
+    const visiblePosts = useMemo(() => {
+        const basePosts =
+            selectedTag && grouped[selectedTag] ? grouped[selectedTag] : posts;
+        const normalizedQuery = searchQuery.trim().toLowerCase();
+        if (!normalizedQuery) {
+            return basePosts;
+        }
+        return basePosts.filter((post) =>
+            post.title.toLowerCase().includes(normalizedQuery),
+        );
+    }, [selectedTag, grouped, posts, searchQuery]);
 
     if (isLoading) {
         return (
@@ -143,6 +157,11 @@ function Velog() {
                 setSelectedTag={setSelectedTag}
                 selectedTag={selectedTag}
                 tags={tags}
+            />
+            <VelogSearchBar
+                query={searchQuery}
+                onChange={setSearchQuery}
+                onClear={() => setSearchQuery("")}
             />
             <VelogWrapper
                 posts={visiblePosts}

@@ -5,8 +5,11 @@ import {
     DivPostTag,
     DivPostTitle,
     DivPostWrapper,
+    DivSearchContainer,
     DivTagContainer,
     DivVelogWrapper,
+    SearchClearButton,
+    SearchInput,
 } from "./Velog.styles";
 
 interface VelogListProps {
@@ -72,3 +75,33 @@ function VelogTagWrapper({
 }
 
 export { VelogWrapper, VelogTagWrapper };
+
+interface VelogSearchBarProps {
+    query: string;
+    onChange: (value: string) => void;
+    onClear: () => void;
+}
+
+function VelogSearchBar({
+    query,
+    onChange,
+    onClear,
+}: VelogSearchBarProps) {
+    return (
+        <DivSearchContainer>
+            <SearchInput
+                value={query}
+                onChange={(event) => onChange(event.target.value)}
+                placeholder="Search by title"
+                aria-label="Search Velog titles"
+            />
+            {query.trim().length > 0 ? (
+                <SearchClearButton type="button" onClick={onClear}>
+                    Clear
+                </SearchClearButton>
+            ) : null}
+        </DivSearchContainer>
+    );
+}
+
+export { VelogSearchBar };
