@@ -8,3 +8,6 @@ Vite + React 기반으로 구성되어 있으며, Velog 글은 GitHub 레포에�
 - GitHub 프로필/레포 목록 (API 실패 시 정적 JSON 폴백)
 - Velog 목록/본문 (GitHub 레포 마크다운 기반)
 - GitHub 스타일 마크다운 렌더링 + 수식/코드 하이라이트
+
+## Contact
+Email: blindlchoil@gmail.com
