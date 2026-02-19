@@ -4,6 +4,7 @@ import Layout from "./components/layout/Layout";
 import Profile from "./pages/profile/Profile";
 import Velog from "./pages/velog/Velog";
 import GitHub from "./pages/github/GitHub";
+import Hippobox from "./pages/hippobox/Hippobox";
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
                         />
                         <Route path="profile" element={<Profile />} />
                         <Route path="github" element={<GitHub />} />
+                        <Route path="hippobox" element={<Hippobox />} />
                         <Route path="velog" element={<Velog />} />
                         <Route path="velog/:postId" element={<Velog />} />
                         <Route path="*" element={<Navigate to="/" replace />} />

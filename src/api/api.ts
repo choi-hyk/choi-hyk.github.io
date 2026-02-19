@@ -80,6 +80,32 @@ export interface PullRequest {
     state: string;
 }
 
+// HippoBox ------------------------------------------------------------------------
+const HIPPOBOX_REPO = "HippoBox/hippobox";
+
+export async function fetchHippoboxReadme(): Promise<string> {
+    const repoResponse = await fetch(
+        `https://api.github.com/repos/${HIPPOBOX_REPO}`,
+    );
+    if (!repoResponse.ok) {
+        throw new Error("Failed to fetch HippoBox repo info");
+    }
+
+    const repoData = (await repoResponse.json()) as {
+        default_branch: string;
+    };
+    const branch = repoData.default_branch || "main";
+
+    const readmeResponse = await fetch(
+        `https://raw.githubusercontent.com/${HIPPOBOX_REPO}/${branch}/README.md`,
+    );
+    if (!readmeResponse.ok) {
+        throw new Error("Failed to fetch HippoBox README");
+    }
+
+    return await readmeResponse.text();
+}
+
 // Velog----------------------------------------------------------------------------
 const VELOG_REPO = "choi-hyk/Velog";
 

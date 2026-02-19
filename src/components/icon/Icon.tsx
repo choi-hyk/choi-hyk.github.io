@@ -36,6 +36,8 @@ const IconBox: React.FC<IconBoxProps> = ({
                 return "150, 170, 255";
             case "velog":
                 return "60, 214, 180";
+            case "hippobox":
+                return "59, 130, 246";
             default:
                 return undefined;
         }
@@ -69,6 +71,8 @@ const IconBox: React.FC<IconBoxProps> = ({
             case "github":
                 return <FaGithub />;
             case "velog":
+                return <FaBlog />;
+            case "hippobox":
                 return <FaBlog />;
             default:
                 return <FaUser />;

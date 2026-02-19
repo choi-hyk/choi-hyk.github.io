@@ -15,11 +15,26 @@ export const DivCenteredWrapper = styled.div`
     }
 
     .markdown-body img {
-        max-width: 100% !important; 
-        height: auto !important;    
-        display: block;             
-        margin: 3rem auto;          
-        border-radius: 8px;         
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    .markdown-body p > img:only-child {
+        display: block;
+        margin: 3rem auto;
+        border-radius: 8px;
+    }
+
+    .markdown-body h1 img,
+    .markdown-body h2 img,
+    .markdown-body h3 img,
+    .markdown-body h4 img,
+    .markdown-body h5 img,
+    .markdown-body h6 img {
+        display: inline-block;
+        margin: 0 0.45rem 0 0;
+        vertical-align: middle;
+        border-radius: 0;
     }
 
     .markdown-body strong {
