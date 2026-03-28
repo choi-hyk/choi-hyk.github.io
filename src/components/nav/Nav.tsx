@@ -15,6 +15,7 @@ import velogIcon from "../../assets/velog.svg";
 import profileIcon from "../../assets/profile.png";
 import githubIcon from "../../assets/github.svg";
 import hippoboxIcon from "../../assets/hippobox.svg";
+import rhythmeIcon from "../../assets/RhythmE.gif";
 
 function Nav() {
     const { currentPage } = usePageContext();
@@ -28,13 +29,15 @@ function Nav() {
         : rawPath;
 
     const getPageIcon = (pageName: string) => {
-        switch (pageName) {
+        switch (pageName.toLowerCase()) {
             case "/velog":
                 return velogIcon;
             case "/github":
                 return githubIcon;
             case "/hippobox":
                 return hippoboxIcon;
+            case "/rhythme":
+                return rhythmeIcon;
             case "/profile":
                 return profileIcon;
             default:
@@ -61,6 +64,7 @@ function Nav() {
                         <IconBox iconName="github" iconSrc={githubIcon} />
                         <IconBox iconName="velog" iconSrc={velogIcon} />
                         <IconBox iconName="hippobox" iconSrc={hippoboxIcon} />
+                        <IconBox iconName="Rhythme" iconSrc={rhythmeIcon} />
                     </DivNavIcons>
                 </DivNavContainer>
             </DivPathBar>

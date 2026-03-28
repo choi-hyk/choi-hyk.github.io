@@ -5,6 +5,7 @@ import Profile from "./pages/profile/Profile";
 import Velog from "./pages/velog/Velog";
 import GitHub from "./pages/github/GitHub";
 import Hippobox from "./pages/hippobox/Hippobox";
+import Rhythme from "./pages/rhythme/Rhythme";
 
 function App() {
 
@@ -20,6 +21,8 @@ function App() {
                         <Route path="profile" element={<Profile />} />
                         <Route path="github" element={<GitHub />} />
                         <Route path="hippobox" element={<Hippobox />} />
+                        <Route path="rhythme" element={<Rhythme />} />
+                        <Route path="RhythmE" element={<Rhythme />} />
                         <Route path="velog" element={<Velog />} />
                         <Route path="velog/:postId" element={<Velog />} />
                         <Route path="*" element={<Navigate to="/" replace />} />
